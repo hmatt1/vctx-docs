@@ -1,6 +1,6 @@
 ---
 title: "vctx - Hardware for Humans"
-description: "A structural hardware description language for hobbyists. Beginner-friendly, explicitly timed, and built for fun FPGA design."
+description: "A hardware description language built with CIRCT."
 noStyle: true
 components:
   meta: true
@@ -18,12 +18,12 @@ seo:
     name: "vctx"
     operatingSystem: "Any"
     applicationCategory: "DeveloperApplication"
-    url: "https://vctx.org"
+    url: "https://hmatt1.github.io/vctx-docs/"
     description: "vctx is a structural hardware description language designed for hobbyists."
     creator:
       "@type": "Organization"
       name: "vctx Project"
-    programmingLanguage: "Python"
+    programmingLanguage: "vctx"
 customHead: |
   <link rel="stylesheet" href="/assets/css/welcome.css">
   
