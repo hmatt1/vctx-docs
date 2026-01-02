@@ -30,7 +30,10 @@ module.exports = {
     name: 'dark',      
     defaultMode: 'dark',
     enableModeToggle: true,
-    codeHighlight: true,    
+    codeHighlight: true,  
+    customCss: [
+       '/vctx-docs/assets/css/welcome.css', // Paths are relative to the outputDir root
+    ],  
   },
 
   // --- Navigation Structure ---
