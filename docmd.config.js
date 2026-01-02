@@ -2,7 +2,7 @@
 module.exports = {
   // --- Core Identity ---
   siteTitle: 'vctx',
-  siteUrl: 'https://hmatt1.github.io/vctx-docs/', // Replace with your actual URL
+  siteUrl: 'https://hmatt1.github.io/vctx-docs', // Replace with your actual URL
 
   // --- Visuals ---
   logo: {
@@ -18,6 +18,12 @@ module.exports = {
   // --- Directories ---
   srcDir: 'docs',       
   outputDir: 'site',    
+
+  search: true,           // Built-in offline search
+  minify: true,           // Production build optimization
+  autoTitleFromH1: true,  // Auto-generate title from first H1 if frontmatter title is missing
+  copyCode: true,         // Enable "copy to clipboard" on code blocks
+  pageNavigation: true,   // Next/Prev links
 
   // --- Theme ---
   theme: {
@@ -70,7 +76,7 @@ module.exports = {
     // 5. GITHUB
     { 
       title: 'GitHub', 
-      path: 'https://github.com/your-org/vctx', 
+      path: 'https://github.com/hmatt1/vctx', 
       icon: 'github', 
       external: true 
     },
