@@ -50,7 +50,7 @@ customHead: |
 
         import { codeToHtml, createHighlighter } from 'https://esm.sh/shiki@3.0.0'
 
-        const grammar = await fetch('/assets/vctx.tmLanguage.json').then(res => res.text());
+        const grammar = await fetch('/vctx-docs/assets/vctx.tmLanguage.json').then(res => res.text());
 
         console.log("grammar", grammar)
 
