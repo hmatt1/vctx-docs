@@ -24,12 +24,6 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '22'
-          cache: 'npm'
-
       - name: Build Docs
         run: npx -y @mgks/docmd build
 
