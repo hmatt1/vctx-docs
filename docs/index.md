@@ -56,6 +56,9 @@ customHead: |
 
         const vctxLang = JSON.parse(grammar, 'utf8')
 
+
+        // TODO change theme to light on toggle
+        
         const highlighter = await createHighlighter({
           langs: [vctxLang],
           themes: ['vitesse-dark']
