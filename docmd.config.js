@@ -2,7 +2,7 @@
 module.exports = {
   // --- Core Identity ---
   siteTitle: 'vctx',
-  siteUrl: 'https://vctx.org', // Replace with your actual URL
+  siteUrl: 'https://hmatt1.github.io/vctx-docs/', // Replace with your actual URL
 
   // --- Visuals ---
   logo: {
@@ -103,7 +103,7 @@ module.exports = {
   // --- Page Features ---
   editLink: {
     enabled: true,
-    baseUrl: 'https://github.com/your-org/vctx/edit/main/docs',
+    baseUrl: 'https://github.com/hmatt1/vctx-lang/edit/main/docs',
     text: 'Edit this page on GitHub'
   },
   
