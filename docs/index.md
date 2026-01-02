@@ -184,7 +184,7 @@ customHead: |
         </div>
         <div class="feature-text">
           <strong>LSP Server</strong>
-          VS Code Language Extension is available
+          VS Code Language Extension
         </div>
       </div>
 
@@ -193,8 +193,8 @@ customHead: |
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
         </div>
         <div class="feature-text">
-          <strong>Verification First</strong>
-          Integrated `sim` and `formal` blocks for cycle-accurate testing.
+          <strong>Verification</strong>
+          `sim` and `formal` blocks for testing
         </div>
       </div>
 
@@ -204,7 +204,7 @@ customHead: |
         </div>
         <div class="feature-text">
           <strong>Incremental Compilation</strong>
-            Built on CIRCT and MLIR
+            Compile only code you changed (rest is cached)
         </div>
       </div>
     </div>
