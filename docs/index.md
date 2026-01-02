@@ -43,7 +43,7 @@ customHead: |
         '    counter <= counter + 1',
         '',
         '    // ":=" is for Combinational Assignment',
-        '    // Wire 24th bit to led',
+        '    // Wire the 24th bit to led',
         '    led := counter[24]',
         '}'
       ].join('\n');
