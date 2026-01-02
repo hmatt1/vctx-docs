@@ -164,7 +164,7 @@ customHead: |
     <h1>Experimental HDL</h1>
 
     <p class="tagline">
-      A structural hardware description language for hobbyists. Explicit timing, strictly typed, and designed for fun.
+      A hardware description language built with CIRCT.
     </p>
     
     <div class="features">
