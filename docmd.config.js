@@ -32,7 +32,7 @@ module.exports = {
     enableModeToggle: true,
     codeHighlight: true,  
     customCss: [
-       '/vctx-docs/assets/css/welcome.css', // Paths are relative to the outputDir root
+       '/assets/css/welcome.css', // Paths are relative to the outputDir root
     ],  
   },
 
