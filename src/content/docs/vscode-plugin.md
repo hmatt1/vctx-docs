@@ -1,0 +1,2 @@
+title: VS Code Plugin
+description: Features and setup for the VS Code extension.FeaturesThe vctx VS Code plugin uses the built-in Language Server Protocol (LSP) to provide:Syntax highlightingReal-time error checkingGo to DefinitionHover information(Documentation on specific plugin installation steps to be added).
