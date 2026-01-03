@@ -3,7 +3,7 @@ title: Wires & Registers
 description: The distinction between immediate connections and state elements.
 ---
 
-# Wire (Continuous Connection)
+## Wire (Continuous Connection)
 
 The keyword wire declares a combinational signal (a simple electrical connection) that has no memory. Its output is calculated instantaneously based on its input.
 
@@ -15,7 +15,7 @@ result := a + b
 Assignment: Can only be driven using :=.
 Initialization: wire x: u8 = 0 sets the default value. This is used if no other assignment drives the wire (e.g., to prevent latches in when blocks). If no literal is present, it defaults to 0.
 
-# Register (State Element)
+## Register (State Element)
 
 The keyword reg declares a sequential register (a flip-flop).
 

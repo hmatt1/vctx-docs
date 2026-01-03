@@ -3,11 +3,11 @@ title: Functions
 description: Writing pure, inlined combinational logic for reuse.
 ---
 
-# Pure Logic Reuse
+## Pure Logic Reuse
 
 Functions in vctx provide a way to reuse combinational logic. They are always inlined (zero hardware overhead) and cannot contain state (no reg allowed).
 
-# Syntax
+## Syntax
 
 ```vctx
 function name(args) -> return_type {
@@ -16,7 +16,7 @@ function name(args) -> return_type {
 }
 ```
 
-# Example: Parity Calculator
+## Example: Parity Calculator
 
 ```vctx
 function get_parity(data: u8) -> bool {

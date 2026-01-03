@@ -3,13 +3,13 @@ title: Grammar Specification
 description: The raw EBNF/Lark grammar specification for parser developers.
 ---
 
-# vctx.lark
+## vctx.lark
 
 ```lark
 // === vctx grammar ===
 
 // === Templates ===
-_list{x}: x ("," x)*
+_list{x}: x (, x)*
 
 // === Start ===
 start: item+
@@ -23,7 +23,7 @@ start: item+
      | formal_decl
 
 import_decl: "import" import_path ("as" IDENT)?
-?import_path: IDENT ("٠" IDENT)*
+?import_path: IDENT ("." IDENT)*
 
 // === SIM & FORMAL BLOCKS ===
 sim_decl: "sim" IDENT block

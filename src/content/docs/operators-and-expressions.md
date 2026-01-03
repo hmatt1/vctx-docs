@@ -3,11 +3,11 @@ title: Operators & Expressions
 description: Math, bitwise logic, and concatenation.
 ---
 
-# Operator Precedence
+## Operator Precedence
 
 vctx supports standard hardware operators.
 
-## Arithmetic
+### Arithmetic
 
 + (Add)
 - (Subtract)
@@ -15,20 +15,20 @@ vctx supports standard hardware operators.
 / (Divide)
 % (Modulus)
 
-## Bitwise
+### Bitwise
 
 | (OR)
 ^ (XOR)
 & (AND)
 ~ (NOT / Invert)
 
-## Logical
+### Logical
 
 || (Logical OR)
 && (Logical AND)
 ! (Logical NOT)
 
-## Comparison
+### Comparison
 
 == (Equal)
 !== (Not Equal)
@@ -37,11 +37,11 @@ vctx supports standard hardware operators.
 <== (Less or Equal)
 >== (Greater or Equal)
 
-## Shift
+### Shift
 
 << (Shift Left)
 >> (Shift Right)
 
-## Ternary
+### Ternary
 
 cond ? true_val : false_val

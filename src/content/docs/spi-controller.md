@@ -3,7 +3,7 @@ title: SPI Controller
 description: Demonstrating Bundle usage with a Serial Peripheral Interface controller.
 ---
 
-# Bundle Definition
+## Bundle Definition
 
 SPI requires four wires with specific directions. We can group them into a bundle.
 
@@ -15,7 +15,7 @@ bundle SPI {
 }
 ```
 
-# Component Implementation
+## Component Implementation
 
 ```vctx
 component Controller(out bus: SPI) {

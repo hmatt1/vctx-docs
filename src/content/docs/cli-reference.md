@@ -3,7 +3,7 @@ title: CLI Reference
 description: Standard commands for check, test, sim, formal, and build.
 ---
 
-# Usage
+## Usage
 
 Usage: vctx-cli.py COMMAND
 
@@ -24,7 +24,7 @@ Usage: vctx-cli.py COMMAND
 ╰─────────────────────────────────────────────────────────────────────╯
 ```
 
-# Common Commands
+## Common Commands
 
 vctx check src/: Fast syntax/type check.
 vctx test: Run all tests in the project.

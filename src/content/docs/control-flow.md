@@ -3,11 +3,11 @@ title: Control Flow (When)
 description: Using 'when', 'elsewhen', and 'otherwise' to define multiplexers.
 ---
 
-# Structural Conditioning
+## Structural Conditioning
 
 The when statement is used to define hardware paths (multiplexers or priority encoders). It is not procedural if logic; it describes which value drives a wire based on conditions.
 
-## Syntax
+### Syntax
 
 ```vctx
 when condition {
@@ -19,7 +19,7 @@ when condition {
 }
 ```
 
-# Example
+## Example
 
 ```vctx
 wire out: u8 = 0 // Default value prevents latches

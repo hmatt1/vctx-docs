@@ -3,7 +3,7 @@ title: Structs & Bundles
 description: Data structs vs. Protocol Bundles.
 ---
 
-# Structs (Data)
+## Structs (Data)
 
 A struct is a named, non-directional group of signals. It is used purely as a data container. Direction is only assigned when the struct is used as a component port.
 
@@ -14,14 +14,14 @@ struct Point {
 }
 ```
 
-# Bundles (Protocols)
+## Bundles (Protocols)
 
 A bundle is a named, directional group of signals, used for interfaces.
 
 to: Signal flows from the Master/Source to the Slave/Sink.
 from: Signal flows from the Slave/Sink to the Master/Source.
 
-# Implicit Flipping
+## Implicit Flipping
 
 The compiler handles directionality automatically. If a bundle is used as an in port (Sink side), the internal flow directions are implicitly flipped.
 

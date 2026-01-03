@@ -3,11 +3,11 @@ title: Simulation Blocks
 description: Writing explicit testbenches with cycle(), reset(), and assertions.
 ---
 
-# Sim Blocks
+## Sim Blocks
 
 Simulation blocks provide explicit test benches with clock control. They instantiate components and can access internal state for verification.
 
-# Example
+## Example
 
 ```vctx
 sim TestBench {
@@ -25,7 +25,7 @@ sim TestBench {
 }
 ```
 
-# Control Functions
+## Control Functions
 
 cycle(): Advance one clock cycle.
 cycle(n): Advance n clock cycles.

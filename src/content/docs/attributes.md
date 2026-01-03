@@ -3,15 +3,15 @@ title: Attributes
 description: Using decorators for synthesis or simulation hints.
 ---
 
-# Attribute Syntax
+## Attribute Syntax
 
 Attributes are decorators attached to components to provide hints to the compiler, synthesizer, or simulation tools. They start with an @ symbol.
 
-## Grammar
+### Grammar
 
 attribute: "@" IDENT ("(" expression ")")?
 
-# Usage
+## Usage
 
 Attributes can be placed before a component definition.
 

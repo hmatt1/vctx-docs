@@ -3,7 +3,7 @@ title: Intrinsic Functions
 description: Built-in helpers like assert, assume, cover, and print.
 ---
 
-# Quick Reference
+## Quick Reference
 
 These functions are built into the compiler.
 
@@ -17,7 +17,7 @@ These functions are built into the compiler.
 | reset(n) | void | sim | Hold reset for N cycles |
 | print(msg, ...) | void | sim | Debug output |
 
-# Usage Notes
+## Usage Notes
 
 In Simulation: assert checks at runtime and fails the test if false. assume acts like an assert.
 In Formal: assert is a proof obligation. assume constrains the solver's inputs.

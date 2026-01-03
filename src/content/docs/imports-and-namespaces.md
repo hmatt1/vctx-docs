@@ -3,7 +3,7 @@ title: Imports & Namespaces
 description: Explicitly covers import syntax and aliasing.
 ---
 
-# Importing Packages
+## Importing Packages
 
 Code reusability is managed via import statements at the top of a file.
 
@@ -12,7 +12,7 @@ import path.to.package
 import path.to.other as alias
 ```
 
-# Scoping
+## Scoping
 
 When you import a package, you can access its contents using dot notation.
 
@@ -21,7 +21,7 @@ package.Component
 package.subpackage.Function
 ```
 
-# Resolving Symbols
+## Resolving Symbols
 
 You can use the CLI to debug namespace issues:
 

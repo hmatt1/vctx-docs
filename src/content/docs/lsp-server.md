@@ -3,11 +3,11 @@ title: LSP Server
 description: Details on the built-in Language Server Protocol features.
 ---
 
-# Built-in Server
+## Built-in Server
 
 vctx includes a full Language Server Protocol implementation in the CLI. This allows any editor that supports LSP (VS Code, Neovim, Emacs) to provide rich language features.
 
-# Commands
+## Commands
 
 ```bash
 # Start the built-in language server for IDE integration
@@ -17,7 +17,7 @@ vctx lsp
 vctx lsp --test-command vctx.sayHello
 ```
 
-# Debugging
+## Debugging
 
 If you are developing editor integration:
 

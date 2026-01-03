@@ -3,7 +3,7 @@ title: Components & Ports
 description: Defining modules, input/output directionality, and instantiation.
 ---
 
-# Defining Components
+## Defining Components
 
 Components are the building blocks of vctx designs. They are defined with inputs and outputs in a port list.
 
@@ -13,13 +13,13 @@ component Blinky(output led: u1) {
 }
 ```
 
-# Port Direction
+## Port Direction
 
 in: Input signal.
 out: Output signal.
 output: Alias for out.
 
-# Instantiation
+## Instantiation
 
 You can instantiate other components within a component.
 

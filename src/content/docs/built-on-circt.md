@@ -3,11 +3,11 @@ title: Built on CIRCT
 description: Explaining the compiler backend and MLIR generation.
 ---
 
-# Compiler Architecture
+## Compiler Architecture
 
 vctx is a modern HDL built on top of the CIRCT (Circuit IR Compilers and Tools) ecosystem. This allows vctx to leverage advanced compiler infrastructure for hardware design.
 
-# MLIR Generation
+## MLIR Generation
 
 The compiler can parse your component and emit CIRCT MLIR (Multi-Level Intermediate Representation). This is useful for integrating with other tools in the LLVM/CIRCT ecosystem.
 
@@ -19,7 +19,7 @@ vctx mlir --top MyProcessor
 vctx mlir --top MyProcessor --arc
 ```
 
-# SystemVerilog Generation
+## SystemVerilog Generation
 
 For synthesis on FPGAs or ASICs, vctx compiles down to SystemVerilog.
 

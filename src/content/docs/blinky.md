@@ -3,7 +3,7 @@ title: Blinky
 description: A "Hello World" LED blinker example.
 ---
 
-# Code
+## Code
 
 ```vctx
 component Blinky(output led: u1) {
@@ -15,7 +15,7 @@ component Blinky(output led: u1) {
 }
 ```
 
-# Explanation
+## Explanation
 
 Counter: A 27-bit register counter is declared and initialized to 0.
 Increment: On every clock cycle, counter increments.

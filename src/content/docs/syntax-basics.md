@@ -3,7 +3,7 @@ title: Syntax Basics
 description: Basic syntax rules, comments, and templates.
 ---
 
-# Whitespace & Comments
+## Whitespace & Comments
 
 vctx ignores standard whitespace. Comments are defined as follows:
 
@@ -15,13 +15,13 @@ Block comments: Enclosed between /* and */.
 wire x: u8 = 0 /* This is a block comment */
 ```
 
-# Identifiers
+## Identifiers
 
 Identifiers must start with a letter or underscore, followed by letters, numbers, or underscores.
 
 Valid: counter, _data, tx_pin_1
 Regex: /[a-zA-Z_][a-zA-Z0-9_]*/
 
-# Templates
+## Templates
 
 In the grammar specifications, you may see _list{x}. This is a template that defines a list of elements 'x' separated by a comma.
