@@ -1,2 +1,24 @@
+---
 title: Intrinsic Functions
-description: Built-in helpers like assert, assume, cover, and print.Quick ReferenceThese functions are built into the compiler.FunctionReturnsContextPurposeassert(cond, msg)voidsim/formal/compProve condition always holdsassume(cond, msg)voidsim/formal/compAssume condition holds (Precondition)cover(cond, msg)voidsim/formalCheck if condition is reachablecycle()voidsim/formalAdvance 1 clock cyclecycle(n)voidsim/formalAdvance N clock cyclesreset(n)voidsimHold reset for N cyclesprint(msg, ...)voidsimDebug outputUsage NotesIn Simulation: assert checks at runtime and fails the test if false. assume acts like an assert.In Formal: assert is a proof obligation. assume constrains the solver's inputs.In Components: assert documents invariants that should always be true.
+description: Built-in helpers like assert, assume, cover, and print.
+---
+
+# Quick Reference
+
+These functions are built into the compiler.
+
+| Function | Returns | Context | Purpose |
+| :--- | :--- | :--- | :--- |
+| assert(cond, msg) | void | sim/formal/comp | Prove condition always holds |
+| assume(cond, msg) | void | sim/formal/comp | Assume condition holds (Precondition) |
+| cover(cond, msg) | void | sim/formal | Check if condition is reachable |
+| cycle() | void | sim/formal | Advance 1 clock cycle |
+| cycle(n) | void | sim/formal | Advance N clock cycles |
+| reset(n) | void | sim | Hold reset for N cycles |
+| print(msg, ...) | void | sim | Debug output |
+
+# Usage Notes
+
+In Simulation: assert checks at runtime and fails the test if false. assume acts like an assert.
+In Formal: assert is a proof obligation. assume constrains the solver's inputs.
+In Components: assert documents invariants that should always be true.

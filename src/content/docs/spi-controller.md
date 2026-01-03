@@ -1,9 +1,24 @@
-title: SPI Controller description: Demonstrating Bundle usage with a Serial Peripheral Interface controller.Bundle DefinitionSPI requires four wires with specific directions. We can group them into a bundle.bundle SPI {
+---
+title: SPI Controller
+description: Demonstrating Bundle usage with a Serial Peripheral Interface controller.
+---
+
+# Bundle Definition
+
+SPI requires four wires with specific directions. We can group them into a bundle.
+
+```vctx
+bundle SPI {
     to   mosi: bool
     to   sclk: bool
     from miso: bool
 }
-Component Implementationcomponent Controller(out bus: SPI) {
+```
+
+# Component Implementation
+
+```vctx
+component Controller(out bus: SPI) {
     // The controller initiates the transaction, so it uses 'out'.
     // 'bus.mosi' and 'bus.sclk' are outputs here.
     // 'bus.miso' is an input here.
@@ -19,3 +34,4 @@ component Peripheral(in bus: SPI) {
     
     wire data: bool := bus.mosi
 }
+```

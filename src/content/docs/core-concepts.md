@@ -1,5 +1,28 @@
+---
 title: Core Concepts 
-description: Understand the fundamental difference between combinational and sequential logic in vctx.Combinational vs. SequentialOne of the primary goals of vctx is to eliminate confusion between immediate logic and clocked logic.:= Combinational (Wires): Represents an immediate connection. Used for logic that reacts instantly to input changes.<= Sequential (Registers): Represents a clocked update. Used for logic that changes state only on the next clock edge.= Declaration: Used only for defining initial values or reset states during variable declaration.Global Clock and Resetvctx simplifies hardware design by assuming a standard synchronous model:Single, global clock: clkSingle, global reset: rstYou do not need to manually route these signals; the compiler handles them for reg updates automatically.Examplecomponent LogicDemo(in switch: bool, out led: bool) {
+description: Understand the fundamental difference between combinational and sequential logic in vctx.
+---
+
+# Combinational vs. Sequential
+
+One of the primary goals of vctx is to eliminate confusion between immediate logic and clocked logic.
+
+:= Combinational (Wires): Represents an immediate connection. Used for logic that reacts instantly to input changes.
+<= Sequential (Registers): Represents a clocked update. Used for logic that changes state only on the next clock edge.
+= Declaration: Used only for defining initial values or reset states during variable declaration.
+
+# Global Clock and Reset
+
+vctx simplifies hardware design by assuming a standard synchronous model:
+Single, global clock: clk
+Single, global reset: rst
+
+You do not need to manually route these signals; the compiler handles them for reg updates automatically.
+
+# Example
+
+```vctx
+component LogicDemo(in switch: bool, out led: bool) {
     // Continuous connection: reacts instantly
     wire combined: bool
     combined := switch & true 
@@ -11,3 +34,4 @@ description: Understand the fundamental difference between combinational and seq
     
     led := state as bool
 }
+```

@@ -1,4 +1,12 @@
-title: Grammar Specification description: The raw EBNF/Lark grammar specification for parser developers.vctx.lark// === vctx grammar ===
+---
+title: Grammar Specification
+description: The raw EBNF/Lark grammar specification for parser developers.
+---
+
+# vctx.lark
+
+```lark
+// === vctx grammar ===
 
 // === Templates ===
 _list{x}: x ("," x)*
@@ -15,7 +23,7 @@ start: item+
      | formal_decl
 
 import_decl: "import" import_path ("as" IDENT)?
-?import_path: IDENT ("." IDENT)*
+?import_path: IDENT ("٠" IDENT)*
 
 // === SIM & FORMAL BLOCKS ===
 sim_decl: "sim" IDENT block
@@ -124,9 +132,9 @@ WIRE_ASSIGN_OP: ":="
 SEQ_ASSIGN_OP: "<="
 
 EQEQ: "=="
-NOT_EQEQ: "!=="
+NOT_EQEQ: "!="
 LESS_EQEQ: "<=="
-GREATER_EQEQ: ">=="
+GREATER_EQEQ: ">="
 LT: "<"
 GT: ">"
 
@@ -180,8 +188,10 @@ IDENT. -1: /[a-zA-Z_][a-zA-Z0-9_]*/
 %import common.WS
 %ignore WS
 
-COMMENT: "//" /[^\n]*/
+COMMENT: "//" /[^
+]*/
 BLOCK_COMMENT: "/*" /(.|\n)*?/ "*/"
 
 %ignore COMMENT
 %ignore BLOCK_COMMENT
+```

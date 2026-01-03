@@ -1,4 +1,16 @@
-title: Simulation Blocks description: Writing explicit testbenches with cycle(), reset(), and assertions.Sim BlocksSimulation blocks provide explicit test benches with clock control. They instantiate components and can access internal state for verification.Examplesim TestBench {
+---
+title: Simulation Blocks
+description: Writing explicit testbenches with cycle(), reset(), and assertions.
+---
+
+# Sim Blocks
+
+Simulation blocks provide explicit test benches with clock control. They instantiate components and can access internal state for verification.
+
+# Example
+
+```vctx
+sim TestBench {
     wire out: bool
     Blinky dut(led: out)
     
@@ -11,4 +23,11 @@ title: Simulation Blocks description: Writing explicit testbenches with cycle(),
     // Check output
     assert(out == true, "LED should be on")
 }
-Control Functionscycle(): Advance one clock cycle.cycle(n): Advance n clock cycles.reset(n): Hold the global reset high for n cycles, then release.print(msg, val): Print debug info during simulation.
+```
+
+# Control Functions
+
+cycle(): Advance one clock cycle.
+cycle(n): Advance n clock cycles.
+reset(n): Hold the global reset high for n cycles, then release.
+print(msg, val): Print debug info during simulation.
