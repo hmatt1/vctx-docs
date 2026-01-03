@@ -1,36 +1,71 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-#template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: vctx
+description: A modern, structural hardware description language built on CIRCT.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Hardware Design, Clarified.
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Getting Started
+    - text: Get Started
       link: /vctx-docs/getting-started
       icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/hmatt1/vctx-lang
+      icon: external
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Why vctx?
+
+vctx is a modern Hardware Description Language (HDL) designed to make digital logic design safer, clearer, and more productive. By enforcing structural thinking and explicit timing, it eliminates entire classes of bugs common in legacy HDLs.
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="Explicit Timing" icon="time">
+		Never confuse combinational and sequential logic again.
+        `:=` for immediate connections.
+        `<=` for clocked updates.
 	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
+	<Card title="Implicit Clock & Reset" icon="setting">
+		Stop wiring `clk` and `rst` everywhere. vctx handles the standard synchronous model for you, keeping your code clean and focused on logic.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Built on CIRCT" icon="rocket">
+		Leverages the power of LLVM and MLIR via the CIRCT project. Compiles to clean SystemVerilog for synthesis or optimized machine code for simulation.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="Formal Verification" icon="magnifier">
+		First-class support for formal methods. Use `sym`, `assume`, and `assert` to mathematically prove your design is correct.
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+</CardGrid>
+
+## A Taste of vctx
+
+Here is a complete "Blinky" example. Note the clear distinction between the register definition, the sequential update, and the combinational output.
+
+```vctx
+component Blinky(output led: u1) {
+    // A 27-bit register initialized to 0
+    reg counter: u27 = 0
+
+    // Sequential update (implicitly uses global clk & rst)
+    counter <= counter + 1
+
+    // Combinational connection
+    led := counter[24]
+}
+```
+
+## Next Steps
+
+<CardGrid>
+    <Card title="Install vctx" icon="download">
+        [Get up and running](/vctx-docs/getting-started) with the CLI tools.
+    </Card>
+    <Card title="Learn the Philosophy" icon="open-book">
+        Understand [why vctx exists](/vctx-docs/language-philosophy) and how it differs from Verilog.
+    </Card>
+     <Card title="FPGA Workflow" icon="puzzle">
+        See how to [synthesize your designs](/vctx-docs/fpga-synthesis) for real hardware.
+    </Card>
 </CardGrid>
