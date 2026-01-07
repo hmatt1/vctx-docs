@@ -67,6 +67,8 @@ export default defineConfig({
                         { label: 'Formal Verification', slug: 'formal-verification' },
                         // Built-in helpers like assert(), assume(), cover(), and print().
                         { label: 'Intrinsic Functions', slug: 'intrinsic-functions' },
+                        // Possible compiler errors and warnings with explanationss.
+                        { label: 'Compiler Errors', slug: 'errors' },
                         // The raw EBNF/Lark grammar specification for parser developers.
                         { label: 'Grammar Specification', slug: 'grammar-specification' },
                     ],
