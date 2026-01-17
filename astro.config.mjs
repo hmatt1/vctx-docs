@@ -2,6 +2,9 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
+import vctxLang from './syntax/vctx.tmLanguage.json';
+import larkLang from './syntax/lark.tmLanguage.json';
+
 // https://astro.build/config
 export default defineConfig({
     site: "https://hmatt1.github.io/",
@@ -10,6 +13,16 @@ export default defineConfig({
         starlight({
             title: 'vctx',
             social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/hmatt1/vctx-lang' }],
+            expressiveCode:{
+                shiki: {
+                    langs: [vctxLang, larkLang],
+                    
+                    // Allow using the alias 'mjs' for the 'javascript' language
+                    langAlias: {
+                        mjs: 'javascript',
+                    }
+                }
+            },
             sidebar: [
                 {
                     label: 'Welcome',
@@ -40,7 +53,7 @@ export default defineConfig({
                         // primitive types (u8, bool), type inference, and literal formats.
                         { label: 'Types & Literals', slug: 'types-and-literals' },
                         // Slicing, concatenation, and indexing of vectors.
-                        { label: 'Arrays & Slicing', slug: 'types-and-literals' },
+                        { label: 'Arrays & Slicing', slug: 'arrays-slicing' },
                         // Converting between types using explicit casts.
                         { label: 'Casting', slug: 'casting' },
                         // Syntax for defining and using static maps/dictionaries.
@@ -86,6 +99,8 @@ export default defineConfig({
                         { label: 'FPGA Synthesis', slug: 'fpga-synthesis' },
 						// Covers 'ast', 'regen', 'tokens', and other developer-focused commands.
 						{ label: 'Compiler Internals', slug: 'compiler-internals' },
+						// Covers how to contribute to the project
+						{ label: 'Contributing', slug: 'contributing' },
                     ],
                 },
                 {

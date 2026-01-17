@@ -1,4 +1,7 @@
-
+---
+title: Compiler Errors
+description: Reference for vctx compiler errors.
+---
 
 ## Declaration
 
