@@ -1,73 +1,64 @@
+
 ---
 title: vctx
 description: A modern, structural hardware description language built on CIRCT.
 template: splash
 hero:
   tagline: Beginner-friendly language for Hardware Design.
-  image:
-    # Ensure this file exists in your project, or change to your logo path
-    file: ../../assets/houston.webp
   actions:
     - text: Get Started
       link: /vctx-docs/getting-started
       icon: right-arrow
       variant: primary
+code: |
+      component Blinky(output led: u1) {
+        // A 27-bit register initialized to 0
+        reg counter: u27 = 0
+
+        // Sequential update
+        counter <= counter + 1
+
+        // Combinational connection
+        led := counter[24]
+      }
+lang: vctx
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+
 
 ## Why vctx?
 
 vctx is a Hardware Description Language (HDL) designed with modern language features and a fast development lifecycle.
 
 <CardGrid stagger>
-  <Card title="Explicit Timing" icon="time">
-    Clear distinction between combinational and sequential logic.
-    `:=` for wires.
-    `<=` for clocked updates.
-  </Card>
-  <Card title="Built on CIRCT" icon="rocket">
-    Leverages the power of LLVM and MLIR via the CIRCT project. Compiles to clean SystemVerilog for synthesis and runs simulation with the CIRCT `arc` dialect.
-  </Card>
-  <Card title="Formal Verification" icon="magnifier">
-    First-class support for formal methods. Use `sym`, `assume`, and `assert` to mathematically prove your design is correct.
-  </Card>
+<Card title="Explicit Timing" icon="time">
+Clear distinction between combinational and sequential logic.
+`:=` for wires.
+`&lt;=` for clocked updates.
+</Card>
+<Card title="Built on CIRCT" icon="rocket">
+Leverages the power of LLVM and MLIR via the CIRCT project. Compiles to clean SystemVerilog for synthesis.
+</Card>
+<Card title="Formal Verification" icon="magnifier">
+First-class support for formal methods. Use `sym`, `assume`, and `assert` to prove correctness.
+</Card>
 </CardGrid>
-
-## A Taste of vctx
-
-Here is a complete "Blinky" example.
-
-```vctx
-component Blinky(output led: u1) {
-    // A 27-bit register initialized to 0
-    reg counter: u27 = 0
-
-    // Sequential update (implicitly uses global clk & rst)
-    counter <= counter + 1
-
-    // Combinational connection
-    led := counter[24]
-}
-
-```
 
 ## Next Steps
 
 <CardGrid>
 <Card title="Install vctx" icon="download">
-[Get up and running](/vctx-docs/getting-started) with the language and the CLI.
+[Get up and running](https://www.google.com/search?q=/vctx-docs/getting-started) with the language and the CLI.
 </Card>
 <Card title="Learn the Philosophy" icon="open-book">
-Understand [why vctx exists](/vctx-docs/language-philosophy) and how it differs from Verilog.
-</Card>
-<Card title="FPGA Workflow" icon="puzzle">
-See how to [synthesize your designs](/vctx-docs/fpga-synthesis) for real hardware.
+Understand [why vctx exists](https://www.google.com/search?q=/vctx-docs/language-philosophy) and how it differs from Verilog.
 </Card>
 </CardGrid>
 
-<p>
-Changes to upstream to CIRCT:
-- python bindings for func
-- arc dialect assert
-</p> 
+<div style={{ marginTop: '4rem', opacity: '0.7', fontSize: '0.9rem' }}>
+**Changes to upstream to CIRCT:**
+
+* Python bindings for func
+* Arc dialect assert
+</div>

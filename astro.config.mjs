@@ -23,6 +23,10 @@ export default defineConfig({
                     }
                 }
             },
+            components: {
+                // This tells Starlight to use your file instead of the default Hero
+                Hero: './src/components/hero.astro',
+            },
             sidebar: [
                 {
                     label: 'Welcome',
