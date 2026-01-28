@@ -12,8 +12,8 @@ wire result: u8
 result := a + b
 ```
 
-Assignment: Can only be driven using :=.
-Initialization: wire x: u8 = 0 sets the default value. This is used if no other assignment drives the wire (e.g., to prevent latches in when blocks). If no literal is present, it defaults to 0.
+**Assignment:** Can only be driven using `:=`.  
+**Initialization:** `wire x: u8 = 0` sets the default value. This is used if no other assignment drives the wire (e.g., to prevent latches in when blocks). If no literal is present, it defaults to 0.
 
 ## Register (State Element)
 
@@ -24,6 +24,6 @@ reg counter: u8 = 0
 counter <= counter + 1
 ```
 
-Clock: Implicitly wired to the global clk.
-Assignment: Can only be changed using <=.
-Reset: The declaration = literal guarantees the register is initialized to that value when the global rst signal is asserted. This makes reset logic implicit and robust.
+**Clock:** Implicitly wired to the global clk.  
+**Assignment:** Can only be changed using `<=`.  
+**Reset:** The declaration `=` literal guarantees the register is set to that value when the global rst signal is asserted.

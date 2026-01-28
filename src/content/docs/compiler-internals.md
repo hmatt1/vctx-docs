@@ -15,6 +15,9 @@ These commands are for debugging the vctx compiler or understanding how it parse
 `python vctx-cli.py project --target examples/blinky.vctx`: Analyze the entire project and dump the symbol table.
 `python vctx-cli.py check --targets examples/or.vctx`: Check one file
 `python vctx-cli.py check`: Check entire project
+`python vctx-cli.py hover examples/or.vctx --line 1 --column 5`: Run hover logic
+`python vctx-cli.py definition .\examples\or.vctx 15 5`: Run go to definition logic
+`python .\vctx-cli.py outline .\examples\or.vctx`: Get symbols using LSP mapping
 
 ## Resolution Debugging
 
@@ -22,6 +25,6 @@ You can inspect how the compiler resolves types and assignments:
 
 ```bash
 python vctx-cli.py resolve-type counter Blinky examples.blinky
-python vctx-cli.py resolve-symbol --ident examples.or.y --scope OrGate --package examples.or
+python vctx-cli.py resolve-symbol --ident examples.or.OrGate.y --package examples.or               
 python vctx-cli.py assignment --ident counter --scope Blinky --package examples.blinky
 ```
