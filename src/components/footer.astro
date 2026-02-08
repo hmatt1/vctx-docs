@@ -1,0 +1,38 @@
+---
+// src/components/Footer.astro
+import DefaultFooter from '@astrojs/starlight/components/Footer.astro';
+
+// Get the props passed to the footer (e.g., current page data)
+const props = Astro.props;
+---
+
+<DefaultFooter {...props} />
+
+<div class="manual-download-link">
+  <p>
+    Need an offline copy? 
+    <a href="/vctx-docs/vctx-documentation.md" download="vctx-manual.md">
+      Download Full Manual (.md)
+    </a>
+  </p>
+</div>
+
+<style>
+  .manual-download-link {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--sl-color-hairline);
+    text-align: center;
+    font-size: var(--sl-text-sm);
+  }
+  
+  .manual-download-link a {
+    color: var(--sl-color-text-accent);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .manual-download-link a:hover {
+    text-decoration: underline;
+  }
+</style>
