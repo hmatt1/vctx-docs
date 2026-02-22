@@ -10,7 +10,10 @@ vctx supports map literals, which are useful for creating lookup tables or confi
 ### Syntax
 
 ```vctx
-{ key: value, key2: value2 }
+{ 
+  key: value, 
+  key2: value2
+}
 ```
 
 ## Grammar Definition
