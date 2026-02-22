@@ -48,5 +48,11 @@ Underscores get ignored, but can be useful for formatting code.
 **Hex:** starts with `0x`, like `0xFF`, `0x10_FF`  
 **Binary:** starts with `0b`, like `0b1011`, `0b1100_0011`  
 **Boolean:** `true`, `false`  
-**String:** `"Text"`  
+**String:** inside double quotes, `"Text"`  
+
+### String Literals
+
+For now, only ascii strings are supported. 
+
+
 
