@@ -40,6 +40,3 @@ Here are some rules that the vctx compiler enforces to ensure a clean and predic
 A wire can not be driven by multiple sources at the same time. This means it could be driven by one continuous combinational assignment (:=), or for example, it could be driven by a statement in each block using when/elsewhen/otherwise.
 
 A reg would follow this rule too. This is because in real life, if a wire is driven at both 0 and 1 at the same time, we would get undefined behavior.
-
-This constraint ensures that the code synthesizes into clear hardware structures (Multiplexers or Priority Encoders) rather than creating conflicting drivers.
-If a wire is not driven by an assignment inside a condition block, it will hold its initial/default literal value declared with `=`
