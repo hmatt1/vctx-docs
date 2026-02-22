@@ -22,6 +22,8 @@ Comments are defined as follows:
 
 ## Identifiers
 
+Identifiers are any code construct that you define, like variable names or component names.
+
 Identifiers must start with a letter or underscore, followed by letters, numbers, or underscores.  
 
 **Examples:** `counter`, `_data`, `tx_pin_1`  
