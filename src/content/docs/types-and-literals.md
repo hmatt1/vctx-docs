@@ -38,10 +38,13 @@ wire d: u1 = 42 // NOT OK: you need at least 6 bits to store the value 42
 
 Numbers will retain their sign, and be extended with zeros automatically to retain the same value.
 
-### Number Formats
+### Literal Formats
 
-Decimal: 123, 1_000
-Hex: 0xFF, 0x10_FF
-Binary: 0b1011, 0b1100_0011
-Boolean: true, false
-String: "Text" (mostly for print debugging)
+When using literals, vctx supports common formats for defining numeric values.
+
+**Decimal:** 123, 1_000
+**Hex:** 0xFF, 0x10_FF
+**Binary:** 0b1011, 0b1100_0011
+**Boolean:** true, false
+**String: "Text"
+
