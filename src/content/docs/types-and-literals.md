@@ -41,10 +41,12 @@ Numbers will retain their sign, and be extended with zeros automatically to reta
 ### Literal Formats
 
 When using literals, vctx supports common formats for defining numeric values.
+Literals will have the same behavior, regardless of what syntax or formatting you use.
+Underscores get ignored, but can be useful for formatting code.
 
-**Decimal:** 123, 1_000
-**Hex:** 0xFF, 0x10_FF
-**Binary:** 0b1011, 0b1100_0011
-**Boolean:** true, false
-**String: "Text"
+**Decimal:** `123`, `1000`, `1_000`  
+**Hex:** starts with `0x`, like `0xFF`, `0x10_FF`  
+**Binary:** starts with `0b`, like `0b1011`, `0b1100_0011`  
+**Boolean:** `true`, `false`  
+**String:** `"Text"`  
 
