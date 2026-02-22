@@ -3,6 +3,10 @@ title: Grammar Specification
 description: The raw EBNF/Lark grammar specification for parser developers.
 ---
 
+## Templates
+
+In the grammar specifications, see `_list{x}`. This is a template that defines a list of elements 'x' separated by a comma.  
+
 ## vctx.lark
 
 ```lark
