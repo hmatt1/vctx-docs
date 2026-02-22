@@ -5,7 +5,11 @@ description: Basic syntax rules, comments, and templates.
 
 ## Whitespace & Comments
 
-vctx ignores standard whitespace. Comments are defined as follows:  
+vctx ignores standard whitespace.
+That means you are free to format the code any way you want.
+It is not like python where identation matters.
+
+Comments are defined as follows:  
 
 **Single-line comments:** Start with `//` and continue to the end of the line  
 **Block comments:** Enclosed between `/*` and `*/`  
