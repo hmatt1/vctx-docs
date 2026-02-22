@@ -1,7 +1,10 @@
 ---
 title: Grammar Specification
-description: The raw EBNF/Lark grammar specification for parser developers.
+description: The EBNF/Lark grammar specification
 ---
+
+Reading the grammar will give you a rough overview of how the syntax works in `vctx`. 
+Some areas may be more permissive for parsing, so the compiler can analyze for better error messages.
 
 ## Templates
 
