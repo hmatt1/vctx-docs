@@ -48,11 +48,13 @@ Underscores get ignored, but can be useful for formatting code.
 **Hex:** starts with `0x`, like `0xFF`, `0x10_FF`  
 **Binary:** starts with `0b`, like `0b1011`, `0b1100_0011`  
 **Boolean:** `true`, `false`  
-**String:** inside double quotes, `"Text"`  
+**String:** inside double quotes, `"text goes here"`  
 
 ### String Literals
 
-For now, only ascii strings are supported. 
+For now, only ascii strings are supported. Strings will get converted so each character is the numeric value for the letter.
 
-
+```vctx
+wire message : u16 = "hi"
+```
 
