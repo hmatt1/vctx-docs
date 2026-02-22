@@ -5,19 +5,20 @@ description: Understand the fundamental difference between combinational and seq
 
 ## Combinational vs. Sequential
 
-One of the primary goals of vctx is to eliminate confusion between immediate logic and clocked logic.
+One of the primary goals of vctx is to have intuitive syntax when working with immediate logic and clocked logic.
 
-:= Combinational (Wires): Represents an immediate connection. Used for logic that reacts instantly to input changes.
-<= Sequential (Registers): Represents a clocked update. Used for logic that changes state only on the next clock edge.
-= Declaration: Used only for defining initial values or reset states during variable declaration.
+`:=` Combinational (Wires): Represents an immediate connection. Used for logic that reacts instantly to input changes.  
+`<=` Sequential (Registers): Represents a clocked update. Used for logic that changes state only on the next clock edge.  
+`=` Declaration: Used only for defining initial values or reset states during variable declaration.  
 
 ## Global Clock and Reset
 
-vctx simplifies hardware design by assuming a standard synchronous model:
-Single, global clock: clk
-Single, global reset: rst
+vctx simplifies hardware design by assuming a standard synchronous model:  
 
-You do not need to manually route these signals; the compiler handles them for reg updates automatically.
+Single, global clock: `clk`  
+Single, global reset: `rst`  
+
+You do not need to manually route these signals; the compiler handles them automatically.
 
 ## Example
 
