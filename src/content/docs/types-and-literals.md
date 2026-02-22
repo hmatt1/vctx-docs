@@ -25,13 +25,18 @@ Literals are always untyped, and inferred from context.
 0xFF
 ```
 
+This means you can work with numbers the way you expect, and the compiler will tell you if something is wrong.
+
 Examples:
 
 ```vctx
-wire x: u8 = 42       // OK: inferred as u8
-wire z: u16 = 42      // OK: inferred as u16
-wire z: u16 = 42 as u8      // NOT OK: casting using `as` will change 42 to a u8
+wire a: u8 = 42       // OK: inferred as u8
+wire b: u16 = 42      // OK: inferred as u16
+wire c: u16 = 42 as u8      // NOT OK: casting using `as` will change 42 to a u8
+wire d: u1 = 42 // NOT OK: you need at least 6 bits to store the value 42
 ```
+
+Numbers will retain their sign, and be extended with zeros automatically to retain the same value.
 
 ### Number Formats
 
