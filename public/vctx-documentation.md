@@ -1,5 +1,5 @@
 # vctx Language Documentation
-*Generated on: 2/10/2026*
+*Generated on: 3/1/2026*
 ---
 
 
@@ -51,19 +51,20 @@ Install the VS Code Language Extension for vctx.
 
 ## Combinational vs. Sequential
 
-One of the primary goals of vctx is to eliminate confusion between immediate logic and clocked logic.
+One of the primary goals of vctx is to have intuitive syntax when working with immediate logic and clocked logic.
 
-:= Combinational (Wires): Represents an immediate connection. Used for logic that reacts instantly to input changes.
-<= Sequential (Registers): Represents a clocked update. Used for logic that changes state only on the next clock edge.
-= Declaration: Used only for defining initial values or reset states during variable declaration.
+`:=` Combinational (Wires): Represents an immediate connection. Used for logic that reacts instantly to input changes.  
+`<=` Sequential (Registers): Represents a clocked update. Used for logic that changes state only on the next clock edge.  
+`=` Declaration: Used only for defining initial values or reset states during variable declaration.  
 
 ## Global Clock and Reset
 
-vctx simplifies hardware design by assuming a standard synchronous model:
-Single, global clock: clk
-Single, global reset: rst
+vctx simplifies hardware design by assuming a standard synchronous model:  
 
-You do not need to manually route these signals; the compiler handles them for reg updates automatically.
+Single, global clock: `clk`  
+Single, global reset: `rst`  
+
+You do not need to manually route these signals; the compiler handles them automatically.
 
 ## Example
 
@@ -90,15 +91,15 @@ component LogicDemo(in switch: bool, out led: bool) {
 
 ## Directory Layout
 
-When you run vctx init, a standard project structure is created. vctx encourages a structured approach to hardware design.
+When you run `vctx init`, a standard project structure is created.  
 
 ## File Extensions
 
-Source files use the .vctx extension.
+Source files use the `.vctx` extension.
 
 ## Packages and Imports
 
-vctx uses a namespacing system similar to modern programming languages. You can import other packages to use their components or functions.
+*vctx* uses a namespacing system similar to other modern programming languages. You can import other packages to use their components or functions.
 
 ### Import Syntax
 
@@ -112,9 +113,9 @@ import examples.counter4 as c4
 
 ## Identifier Resolution
 
-Base Identifier: counter
-Field Access: bus.mosi
-Qualified Name: examples.counter3.Count
+Base Identifier: `counter`  
+Field Access: `bus.mosi`  
+Qualified Name: `examples.counter3.Count`  
 
 You can use the CLI tools to inspect imports and symbols:
 
@@ -168,9 +169,9 @@ vctx sv --top MyTopLevel
 
 ## Structural vs. Procedural
 
-In traditional programming, if is a procedural control-flow instruction. It tells the compiler to execute code lines sequentially based on a condition. In HDLs, however, the structure is always meant to describe hardware, not a sequence of CPU instructions.
+In traditional programming, `if` is a procedural control-flow instruction. It tells the compiler to execute code lines sequentially based on a condition. In HDLs, however, the structure is always meant to describe hardware, not a sequence of CPU instructions.
 
-vctx is structural.
+*vctx is structural*
 
 The keyword when emphasizes that you are defining a condition under which a path exists in the final hardware structure (a multiplexer or priority encoder). It emphasizes the structural selection rather than the procedural execution order. It's a statement about the circuit's configuration, not its execution sequence.
 
@@ -190,26 +191,30 @@ This makes the timing intent of your design explicit and readable.
 
 ## Whitespace & Comments
 
-vctx ignores standard whitespace. Comments are defined as follows:
+vctx ignores standard whitespace.
+That means you are free to format the code any way you want.
+It is not like python where identation matters.
 
-Single-line comments: Start with // and continue to the end of the line.
-Block comments: Enclosed between /* and */.
+Comments are defined as follows:  
+
+**Single-line comments:** Start with `//` and continue to the end of the line  
+**Block comments:** Enclosed between `/*` and `*/`  
 
 ```vctx
 // This is a single line comment
-wire x: u8 = 0 /* This is a block comment */
+/* This is 
+   a block comment */
 ```
 
 ## Identifiers
 
-Identifiers must start with a letter or underscore, followed by letters, numbers, or underscores.
+Identifiers are any code construct that you define, like variable names or component names.
 
-Valid: counter, _data, tx_pin_1
-Regex: /[a-zA-Z_][a-zA-Z0-9_]*/
+Identifiers must start with a letter or underscore, followed by letters, numbers, or underscores.  
 
-## Templates
+**Examples:** `counter`, `_data`, `tx_pin_1`  
+Identifiers would match this regex: `[a-zA-Z_][a-zA-Z0-9_]*`
 
-In the grammar specifications, you may see _list{x}. This is a template that defines a list of elements 'x' separated by a comma.
 
 ---
 
@@ -282,20 +287,44 @@ counter <= counter + 1
 
 
 
+## What does combinatorial mean?
+
+An important concept in vctx is when assignments happen.
+You can think of combinatorial logic as connecting wires.
+Wires will immediately update to the new value when wires it depends on change value.
+For example, suppose we have `c := a + b`.
+`c` will always be the sum of `a` and `b`. If either `a` or `b` change value,
+then `c` will update right away too.
+
+## What does sequential mean?
+
+You can think of sequential logic as logic that will execute on the next clock edge.
+For the example `c <= a + b`, that means if `a` or `b` change value, there is a period of time
+where `c` still have the old sum, until the clock edge comes and it updates to the new sum.  
+
+A good way to think of it is if you have a `1Hz` clock, then it "ticks" once per second,
+and the value will update on the next "tick".  
+
 ## Assignment Operators
 
-:= Combinational: Immediate assignment. Used for wire.
-<= Sequential: Delayed assignment (next clock cycle). Used for reg.
-= Declaration: Initialization or reset value.
+`:=` Combinatorial: Immediate assignment. Used when assigning to a `wire`.  
+`<=` Sequential: Delayed assignment (next clock cycle). Used for `reg`.  
+`=` Declaration: Initialization or reset value.  
+
+Both sequential and combinatorial constructs, like `wire` and `reg`, use `=` when declaring the initial value for that variable.
+
+As a result, you don't have to connect the clock to everything in vctx.
+The language follows these rules on when values will change.
+In theory, this should make it easier to write hardware logic, and reduce mistakes around clock and resets.
 
 ## Single Driver Rule
 
-To ensure a clean and predictable circuit:
-A wire can only have one continuous combinational assignment (:=) OR be driven by a single, unified when/elsewhen/otherwise block.
-A reg should also follow this priority structure.
+Here are some rules that the vctx compiler enforces to ensure a clean and predictable circuit.
 
-This constraint ensures that the code synthesizes into clear hardware structures (Multiplexers or Priority Encoders) rather than creating conflicting drivers.
-If a wire is not driven by an assignment inside a condition block, it will hold its initial/default literal value declared with =.
+A wire can not be driven by multiple sources at the same time. This means it could be driven by one continuous combinational assignment (:=), or for example, it could be driven by a statement in each block using when/elsewhen/otherwise.
+
+A reg would follow this rule too. This is because in real life, if a wire is driven at both 0 and 1 at the same time, we would get undefined behavior.
+
 
 ---
 
@@ -304,9 +333,14 @@ If a wire is not driven by an assignment inside a condition block, it will hold 
 
 ## Primitive Types
 
-uN: Unsigned integer of width N (e.g., u8, u16, u1).
-sN: Signed integer of width N.
-bool: Boolean value (true or false).
+Primitive types are built into vctx. N can be any counting number (positive integers). `N` is always read with base 10.
+
+`uN`: Unsigned integer of width N (`u1`, `u16`, etc)  
+`sN`: Signed integer of width N  (`s1`, `s16`, etc)
+`bool`: Boolean value (`true` or `false`)  
+
+Booleans are essentially like using a `u1`, but it can be more readable to write code using `true` or `false` instead of `0` or `1`.
+Either way, you only need 1 bit to represent a boolean.
 
 ## Literals
 
@@ -319,21 +353,40 @@ Literals are always untyped, and inferred from context.
 0xFF
 ```
 
+This means you can work with numbers the way you expect, and the compiler will tell you if something is wrong.
+
 Examples:
 
 ```vctx
-wire x: u8 = 42       // OK: inferred as u8
-wire z: u16 = 42      // OK: inferred as u16
-wire z: u16 = 42 as u8      // NOT OK: casting using `as` will change 42 to a u8
+wire a: u8 = 42       // OK: inferred as u8
+wire b: u16 = 42      // OK: inferred as u16
+wire c: u16 = 42 as u8      // NOT OK: casting using `as` will change 42 to a u8
+wire d: u1 = 42 // NOT OK: you need at least 6 bits to store the value 42
 ```
 
-### Number Formats
+Numbers will retain their sign, and be extended with zeros automatically to retain the same value.
 
-Decimal: 123, 1_000
-Hex: 0xFF, 0x10_FF
-Binary: 0b1011, 0b1100_0011
-Boolean: true, false
-String: "Text" (mostly for print debugging)
+### Literal Formats
+
+When using literals, vctx supports common formats for defining numeric values.
+Literals will have the same behavior, regardless of what syntax or formatting you use.
+Underscores get ignored, but can be useful for formatting code.
+
+**Decimal:** `123`, `1000`, `1_000`  
+**Hex:** starts with `0x`, like `0xFF`, `0x10_FF`  
+**Binary:** starts with `0b`, like `0b1011`, `0b1100_0011`  
+**Boolean:** `true`, `false`  
+**String:** inside double quotes, `"text goes here"`  
+
+### String Literals
+
+For now, only ascii strings are supported. Strings will get converted so each character is the numeric value for the letter.
+
+```vctx
+wire message : u16 = "hi"
+```
+
+
 
 ---
 
@@ -342,27 +395,33 @@ String: "Text" (mostly for print debugging)
 
 ## Indexing Convention
 
-Bit 0 is always the LSB (least significant bit).
-For u8, bits are [7, 6, 5, 4, 3, 2, 1, 0] where 7 is MSB.
-For arrays, index 0 is the first element.
+Bit 0 is always the LSB (least significant bit).  
+For `u8`, bits are [7, 6, 5, 4, 3, 2, 1, 0] where 7 is MSB.  
+For arrays, index 0 is the first element.  
 
 ## Accessing Data
 
-Index: counter[0] (Access specific bit or element)
-Slice: data[7..0] (Extract a range of bits)
+Index: `counter[0]` (Access specific bit or element)  
+Slice: `data[7..0]` (Extract a range of bits)  
 
 ## Range Slice Rules
 
-When slicing, you must use [MSB..LSB] order.
-data[high..low] (Requires high >= low)
-data[3..0] (Gets bits 3, 2, 1, 0)
-data[15..8] (Gets the upper byte)
-data[0..7] ERROR: Ranges must be descending.
+When slicing, you must use [MSB..LSB] order.  
+
+`data[high..low]` (Requires high >= low)
+`data[3..0]` (Gets bits 3, 2, 1, 0)
+`data[15..8]` (Gets the upper byte)
+`data[0..7]` ERROR: Ranges must be descending.
 
 ## Concatenation
 
-You can combine signals using curly braces:
-{high_byte, low_byte}
+You can combine signals using the built-in `concat` function:
+
+```vctx
+concat(high_byte, low_byte)
+```
+
+
 
 
 ---
@@ -386,9 +445,8 @@ reg state: u1 = 0
 led := state as bool
 
 // Resizing logic (example generic usage)
-return {0 as u4, val[10..0]}
+wire foo: u16 = concat(0 as u4, val[11..0])
 ```
-
 
 ---
 
@@ -402,7 +460,10 @@ vctx supports map literals, which are useful for creating lookup tables or confi
 ### Syntax
 
 ```vctx
-{ key: value, key2: value2 }
+{ 
+  key: value, 
+  key2: value2
+}
 ```
 
 ## Grammar Definition
@@ -425,51 +486,65 @@ vctx supports standard hardware operators.
 
 ### Arithmetic
 
-+ (Add)
-- (Subtract)
-* (Multiply)
-/ (Divide)
-% (Modulus)
+`+` (Add)  
+`-` (Subtract)  
+`*` (Multiply)  
+`/` (Divide)  
+`%` (Modulus)  
 
 ### Bitwise
 
-| (OR)
-^ (XOR)
-& (AND)
-~ (NOT / Invert)
+`|` (OR)  
+`^` (XOR)  
+`&` (AND)  
+`~` (NOT / Invert)  
 
 ### Logical
 
-|| (Logical OR)
-&& (Logical AND)
-! (Logical NOT)
+`or` (Logical OR)  
+`and` (Logical AND)  
+`not` (Logical NOT)  
 
 ### Comparison
 
-== (Equal)
-!== (Not Equal)
-< (Less Than)
-> (Greater Than)
-<== (Less or Equal)
->== (Greater or Equal)
+All the comparison operators consistenly use two equal signs.
+This is to avoid confusion with the sequential assignment operator (`<=`).  
+
+`==` (Equal)  
+`!==` (Not Equal)  
+`<` (Less Than)  
+`>` (Greater Than)  
+`<==` (Less or Equal)  
+`>==` (Greater or Equal)  
 
 ### Shift
 
-<< (Shift Left)
->> (Shift Right)
+`<<` (Shift Left)  
+`>>` (Shift Right)  
 
 ### Ternary
 
+```vctx
 cond ? true_val : false_val
+```
 
 ---
 
 
 
 
+If you're familiar with imperative programming languages, like python, you're used to code being executed line by line.
+In vctx, there are many declarative concepts, similar to html.
+An easy way to think of it is that you're declaring what hardware will exist.
+Hardware is physical, just like the road when you're driving down the highway.
+If you pass an exit, you would have the option to take it, but the exit ramp will still exist even if you stay on the highway.
+This is why vctx uses `when` instead of `if`.
+In imperative languages, like python, an `if` statement would test if a code path should be executed or not.
+In vctx, `when` will synthesize to hardware gates in the design. So the different code paths will exist on hardware, and whether they are used depends on values at runtime.
+
 ## Structural Conditioning
 
-The when statement is used to define hardware paths (multiplexers or priority encoders). It is not procedural if logic; it describes which value drives a wire based on conditions.
+The `when` statement is used to define hardware paths (multiplexers or priority encoders). It is not procedural if logic; it describes which value drives a wire based on conditions.
 
 ### Syntax
 
@@ -620,7 +695,7 @@ You can also use generics in functions for width-agnostic logic.
 
 ```vctx
 function <W> mask_upper(val: W) -> W {
-    return {0 as u4, val[(W.width - 5)..0]}
+    return concat(0 as u4, val[(W.width - 5)..0])
 }
 ```
 
@@ -689,7 +764,12 @@ python vctx-cli.py resolve-symbol --ident counter --scope Blinky --package examp
 
 ## Sim Blocks
 
-Simulation blocks provide explicit test benches with clock control. They instantiate components and can access internal state for verification.
+Simulation blocks provide explicit test benches with clock control. They instantiate components and can access internal state for verification.  
+
+Simulation blocks contain a mix of declarative and imperative programming concepts.  
+
+For example, instantiating components will be declarative; you are defining what hardware will exist.
+But, calls to `assert` and `cycle` are imperative, those lines of code will execute in order.  
 
 ## Example
 
@@ -711,10 +791,11 @@ sim TestBench {
 
 ## Control Functions
 
-cycle(): Advance one clock cycle.
-cycle(n): Advance n clock cycles.
-reset(n): Hold the global reset high for n cycles, then release.
-print(msg, val): Print debug info during simulation.
+`assert(condition, message)`: Cause the test to fail if the condition is not met.
+`cycle()`: Advance one clock cycle.
+`cycle(n)`: Advance n clock cycles.
+`reset(n)`: Hold the global reset high for n cycles, then release.
+`print(msg, val)`: Print debug info during simulation.
 
 ---
 
@@ -803,6 +884,13 @@ See more on [Types and Literals](types-and-literals.md)
 
 
 
+
+Reading the grammar will give you a rough overview of how the syntax works in `vctx`. 
+Some areas may be more permissive for parsing, so the compiler can analyze for better error messages.
+
+## Templates
+
+In the grammar specifications, see `_list{x}`. This is a template that defines a list of elements 'x' separated by a comma.  
 
 ## vctx.lark
 
@@ -906,7 +994,6 @@ postfix_op: "." IDENT                                 -> field_access
 
 ?atom: literal
      | "(" expression ")"
-     | concatenation_expr
      | function_call
 
 ?base_type: IDENT
@@ -918,9 +1005,6 @@ call_or_instantiation: (IDENT ":")? generic_args? identifier_access "(" connecti
 generic_args: "<" _list{expression} ">"
 connection: (IDENT "--") ? expression
 connection_list: _list{connection}
-
-// === CONCATENATION ===
-concatenation_expr: "{" _list{expression} "}"
 
 // === OPERATOR TOKENS ===
 LOGICAL_OR_OP: "||"
