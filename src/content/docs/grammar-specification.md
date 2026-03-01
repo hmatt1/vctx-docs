@@ -112,7 +112,6 @@ postfix_op: "." IDENT                                 -> field_access
 
 ?atom: literal
      | "(" expression ")"
-     | concatenation_expr
      | function_call
 
 ?base_type: IDENT
@@ -124,9 +123,6 @@ call_or_instantiation: (IDENT ":")? generic_args? identifier_access "(" connecti
 generic_args: "<" _list{expression} ">"
 connection: (IDENT "--") ? expression
 connection_list: _list{connection}
-
-// === CONCATENATION ===
-concatenation_expr: "{" _list{expression} "}"
 
 // === OPERATOR TOKENS ===
 LOGICAL_OR_OP: "||"

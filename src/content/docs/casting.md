@@ -19,5 +19,5 @@ reg state: u1 = 0
 led := state as bool
 
 // Resizing logic (example generic usage)
-return {0 as u4, val[10..0]}
+wire foo: u16 = concat(0 as u4, val[11..0])
 ```

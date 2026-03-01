@@ -11,6 +11,7 @@ These functions are built into the compiler.
 | :--- | :--- | :--- | :--- |
 | assert(cond, msg) | void | sim/formal/comp | Prove condition always holds |
 | assume(cond, msg) | void | sim/formal/comp | Assume condition holds (Precondition) |
+| concat(expr, ...) | inferred | sim/formal/comp | Concatenate multiple signals |
 | cover(cond, msg) | void | sim/formal | Check if condition is reachable |
 | cycle() | void | sim/formal | Advance 1 clock cycle |
 | cycle(n) | void | sim/formal | Advance N clock cycles |

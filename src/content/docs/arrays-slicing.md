@@ -25,10 +25,10 @@ When slicing, you must use [MSB..LSB] order.
 
 ## Concatenation
 
-You can combine signals using curly braces:
+You can combine signals using the built-in `concat` function:
 
 ```vctx
-{high_byte, low_byte}
+concat(high_byte, low_byte)
 ```
 
 

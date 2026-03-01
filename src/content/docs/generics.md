@@ -35,6 +35,6 @@ You can also use generics in functions for width-agnostic logic.
 
 ```vctx
 function <W> mask_upper(val: W) -> W {
-    return {0 as u4, val[(W.width - 5)..0]}
+    return concat(0 as u4, val[(W.width - 5)..0])
 }
 ```
