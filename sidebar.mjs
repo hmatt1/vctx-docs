@@ -13,6 +13,8 @@ export const sidebar = [
                         { label: 'Built on CIRCT', slug: 'built-on-circt' },
                         // Discusses why vctx is "structural" not "procedural", and the philosophy behind explicit timing.
                         { label: 'Language Philosophy', slug: 'language-philosophy' },
+                        // Explains MLIR
+                        { label: 'Intermediate Representation', slug: 'ir-comparison' },
                     ],
                 },
                 {
