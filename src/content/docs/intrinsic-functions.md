@@ -12,7 +12,6 @@ These functions are built into the compiler.
 | Function | Returns | Context | Purpose |
 | :--- | :--- | :--- | :--- |
 | width(expr) | int | comp/sim/formal | Returns the exact bit-width of any expression, wire, or register |
-| length(array) | int | comp/sim/formal | Returns the number of elements in an array or memory block |
 | is_signed(expr) | bool | comp/sim/formal | Returns true if the signal is a signed type |
 | is_comptime(expr) | bool | comp/sim/formal | Returns true if the compiler knows the literal integer value of the expression |
 
