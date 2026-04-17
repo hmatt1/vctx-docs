@@ -1,11 +1,15 @@
 ---
 title: Functions
-description: Writing pure, inlined combinational logic for reuse.
+description: Writing pure, inlined logic for reuse.
 ---
 
 ## Pure Logic Reuse
 
-Functions in vctx provide a way to reuse combinational logic. They are always inlined (zero hardware overhead) and cannot contain state (no reg allowed).
+Functions in vctx provide another way to reuse logic. They are always inlined.
+That means there is zero overhead for calling a function, except it will create 
+additional hardware for each call.
+
+If you don't want to create additional hardware, the vctx approach is to use a `Component` instead of a `function`.
 
 ## Syntax
 
