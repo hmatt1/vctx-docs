@@ -47,13 +47,13 @@ attribute: "@" IDENT ("(" expression ")")?
 
 // === FUNCTIONS ===
 
-function_decl: FUNCTION IDENT "(" function_param_list? ")" ("->" type)? block
+function_decl: FUNCTION IDENT generic_params? "(" function_param_list? ")" ("->" type)? block
 
 function_param_list: _list{typed_identifier}
 
 // === COMPONENTS & GENERICS ===
 
-component: attribute* generic_params? COMPONENT IDENT "(" port_list? ")" block
+component: attribute* COMPONENT IDENT generic_params? "(" port_list? ")" block
 
 generic_params: LT _list{generic_param} GT
 
@@ -107,11 +107,13 @@ assignment: identifier_access ASSIGN_OP expression
 
 // --- CONTROL FLOW ---
 
-when_statement: when_clause+
+// One priority chain: leading `when`, zero or more `elsewhen`, optional final `otherwise`.
+// A second top-level `when` must be a new `statement` in the enclosing block (not another `when` here).
+when_statement: when_first_arm elsewhen_arm* otherwise_arm?
 
-?when_clause: WHEN expression body
-            | ELSEWHEN expression body
-            | OTHERWISE body
+when_first_arm: WHEN expression body
+elsewhen_arm: ELSEWHEN expression body
+otherwise_arm: OTHERWISE body
 
 // === EXPRESSIONS ===
 
@@ -166,9 +168,16 @@ postfix_op: "." IDENT                                     -> field_access
 function_call: IDENT "(" argument_list? ")"
 argument_list: _list{expression}
 
-call_or_instantiation: (IDENT ":")? generic_args? identifier_access "(" connection_list? ")"
+call_or_instantiation: (IDENT ":")? identifier_access generic_args? "(" connection_list? ")"
 
-generic_args: LT _list{expression} GT
+// Arguments here must not use raw `expression` alone: after a numeric literal, `>` would
+// conflict with the comparison operator (e.g. `Adder<8>(...)`). Use literals, names, or
+// parenthesized expressions for compound values.
+generic_args: LT _list{generic_arg} GT
+
+?generic_arg: literal
+             | IDENT
+             | "(" expression ")"
 
 connection: (IDENT "--") ? expression
 
@@ -176,8 +185,8 @@ connection_list: _list{connection}
 
 // === OPERATOR TOKENS ===
 
-LOGICAL_OR_OP: "||"
-LOGICAL_AND_OP: "&&"
+LOGICAL_OR_OP: /\bor\b/
+LOGICAL_AND_OP: /\band\b/
 BITWISE_OR_OP: "|"
 BITWISE_XOR_OP: "^"
 BITWISE_AND_OP: "&"
@@ -207,7 +216,7 @@ SLASH: "/"
 PERCENT: "%"
 mul_op: STAR | SLASH | PERCENT
 
-NOT: "!"
+NOT: /\bnot\b/
 TILDE: "~"
 unary_op: NOT | TILDE | MINUS
 

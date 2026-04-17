@@ -9,8 +9,19 @@ Functions in vctx provide a way to reuse combinational logic. They are always in
 
 ## Syntax
 
+Without generic parameters:
+
 ```vctx
 function name(args) -> return_type {
+    // logic
+    return expression
+}
+```
+
+With generic parameters (after the function name, same idea as `component Name<Params>(...)`):
+
+```vctx
+function name<Params>(args) -> return_type {
     // logic
     return expression
 }

@@ -19,22 +19,24 @@ component Adder<WIDTH>(in a: uWIDTH, in b: uWIDTH, out sum: uWIDTH) {
 
 ## Instantiation
 
-Use the -- syntax in the connection list to map generics if needed (or simply instantiate with type inference if supported).
+Optional instance name: write `label:` before the component target. Port bindings use `--` in the connection list.
 
 ```vctx
-// Creates Adder_8 module
-Adder<8> add8(a -- x8, b -- y8, sum -- z8)      
+// Adder specialized to width 8
+add8: Adder<8>(a -- x8, b -- y8, sum -- z8)
 
-// Creates Adder_16 module
-Adder<16> add16(a -- x16, b -- y16, sum -- z16) 
+// Anonymous instance (no `label:`)
+Adder<16>(a -- x16, b -- y16, sum -- z16)
 ```
+
+Generic arguments are literals, identifiers, or parenthesized expressions (for example `Adder<(W + 1)>(...)`), so `>` is not parsed as a comparison operator after a bare number.
 
 ## Generic Functions
 
-You can also use generics in functions for width-agnostic logic.
+You can also use generics on functions for width-agnostic logic. Parameters follow the function name, same pattern as components.
 
 ```vctx
-function <W> mask_upper(val: W) -> W {
+function mask_upper<W>(val: W) -> W {
     return concat(0 as u4, val[(W.width - 5)..0])
 }
 ```

@@ -632,8 +632,19 @@ Functions in vctx provide a way to reuse combinational logic. They are always in
 
 ## Syntax
 
+Without generic parameters:
+
 ```vctx
 function name(args) -> return_type {
+    // logic
+    return expression
+}
+```
+
+With generic parameters (after the function name, same idea as `component Name<Params>(...)`):
+
+```vctx
+function name<Params>(args) -> return_type {
     // logic
     return expression
 }
@@ -679,22 +690,24 @@ component Adder<WIDTH>(in a: uWIDTH, in b: uWIDTH, out sum: uWIDTH) {
 
 ## Instantiation
 
-Use the -- syntax in the connection list to map generics if needed (or simply instantiate with type inference if supported).
+Optional instance name: write `label:` before the component target. Port bindings use `--` in the connection list.
 
 ```vctx
-// Creates Adder_8 module
-Adder<8> add8(a -- x8, b -- y8, sum -- z8)      
+// Adder specialized to width 8
+add8: Adder<8>(a -- x8, b -- y8, sum -- z8)
 
-// Creates Adder_16 module
-Adder<16> add16(a -- x16, b -- y16, sum -- z16) 
+// Anonymous instance (no `label:`)
+Adder<16>(a -- x16, b -- y16, sum -- z16)
 ```
+
+Generic arguments are literals, identifiers, or parenthesized expressions (for example `Adder<(W + 1)>(...)`), so `>` is not parsed as a comparison operator after a bare number.
 
 ## Generic Functions
 
-You can also use generics in functions for width-agnostic logic.
+You can also use generics on functions for width-agnostic logic. Parameters follow the function name, same pattern as components.
 
 ```vctx
-function <W> mask_upper(val: W) -> W {
+function mask_upper<W>(val: W) -> W {
     return concat(0 as u4, val[(W.width - 5)..0])
 }
 ```
@@ -929,13 +942,13 @@ attribute: "@" IDENT ("(" expression ")")?
 
 // === FUNCTIONS ===
 
-function_decl: FUNCTION IDENT "(" function_param_list? ")" ("->" type)? block
+function_decl: FUNCTION IDENT generic_params? "(" function_param_list? ")" ("->" type)? block
 
 function_param_list: _list{typed_identifier}
 
 // === COMPONENTS & GENERICS ===
 
-component: attribute* generic_params? COMPONENT IDENT "(" port_list? ")" block
+component: attribute* COMPONENT IDENT generic_params? "(" port_list? ")" block
 
 generic_params: LT _list{generic_param} GT
 
@@ -1048,9 +1061,15 @@ postfix_op: "." IDENT                                     -> field_access
 function_call: IDENT "(" argument_list? ")"
 argument_list: _list{expression}
 
-call_or_instantiation: (IDENT ":")? generic_args? identifier_access "(" connection_list? ")"
+call_or_instantiation: (IDENT ":")? identifier_access generic_args? "(" connection_list? ")"
 
-generic_args: LT _list{expression} GT
+// Generic instance arguments use `generic_arg` (not full `expression`) so `Adder<8>(...)`
+// is not ambiguous with the `>` comparison operator. Use parentheses for compound values.
+generic_args: LT _list{generic_arg} GT
+
+?generic_arg: literal
+             | IDENT
+             | "(" expression ")"
 
 connection: (IDENT "--") ? expression
 
