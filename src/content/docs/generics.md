@@ -12,7 +12,7 @@ Generic parameters enable compile-time parameterization. Each unique instantiati
 Define generics using < > after the component or function name.
 
 ```vctx
-component Adder<WIDTH>(in a: uWIDTH, in b: uWIDTH, out sum: uWIDTH) {
+component Adder<WIDTH>(in a: u[WIDTH], in b: u[WIDTH], out sum: u[WIDTH]) {
     sum := a + b
 }
 ```
@@ -29,7 +29,7 @@ add8: Adder<8>(a -- x8, b -- y8, sum -- z8)
 Adder<16>(a -- x16, b -- y16, sum -- z16)
 ```
 
-Generic arguments are literals, identifiers, or parenthesized expressions (for example `Adder<(W + 1)>(...)`), so `>` is not parsed as a comparison operator after a bare number.
+Generic arguments are literals, identifiers, or parenthesized expressions (for example, you can do `Adder<W + 1>(...)`).
 
 ## Generic Functions
 
