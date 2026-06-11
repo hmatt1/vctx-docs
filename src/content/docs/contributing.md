@@ -3,6 +3,7 @@ title: Contributing
 description: Guide on how to contribute to vctx
 ---
 
+Everyone is welcome to contribute.
 
 ### Python Linting
 
