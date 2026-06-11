@@ -14,9 +14,15 @@ The compiler can parse your component and emit CIRCT MLIR (Multi-Level Intermedi
 ```bash
 # Emit standard CIRCT MLIR
 vctx mlir --top MyProcessor
+```
 
+Since vctx allows you to write simulations, you can also emit the MLIR code for a specific simulation. This will give a good example of how vctx is lowered to MLIR.
+
+```
 # Include Arc dialect for cycle-accurate simulation optimization
-vctx mlir --top MyProcessor --arc
+vctx mlir --sim foo.MyProcessor:MySim
+
+## Todo add other example commands and verify whether --top is needed with --sim
 ```
 
 ## SystemVerilog Generation
@@ -30,3 +36,5 @@ vctx sv
 # Generate Verilog for a specific component
 vctx sv --top MyTopLevel
 ```
+
+Then you can compile the SystemVerilog with standard toolchains.

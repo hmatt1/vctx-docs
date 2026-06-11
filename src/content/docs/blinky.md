@@ -9,7 +9,7 @@ description: A "Hello World" LED blinker example.
 component Blinky(output led: u1) {
     reg counter: u27 = 0
 
-    counter <= counter + 1
+    counter <= (counter + 1) as u27
 
     led := counter[24]
 }
