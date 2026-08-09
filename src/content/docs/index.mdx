@@ -37,8 +37,11 @@ Clear distinction between combinational and sequential logic.
 `:=` for wires.
 `<=` for clocked updates.
 </Card>
-<Card title="Easy Simulations" icon="seti:clock">
+<Card title="Easy Simulations" icon="approve-check-circle">
 Run simulations just like unit tests.
+</Card>
+<Card title="Strongly Typed Bit Widths" icon="puzzle">
+The compiler natively tracks bit widths. Operations like `u8 + u8` automatically expand to `u9` to prevent implicit truncation. Narrowing a width requires an explicit `as` cast.
 </Card>
 <Card title="Built on CIRCT" icon="rocket">
 Leverages the power of LLVM and MLIR via the CIRCT project. Compiles to clean SystemVerilog for synthesis.
