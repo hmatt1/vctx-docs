@@ -41,7 +41,7 @@ Clear distinction between combinational and sequential logic.
 Run simulations just like unit tests.
 </Card>
 <Card title="Strongly Typed Bit Widths" icon="puzzle">
-The compiler natively tracks bit widths. Operations like `u8 + u8` automatically expand to `u9` to prevent implicit truncation.
+Adding two `u8` values will result in a `u9`. The compiler natively tracks bit widths to prevent implicit truncation. 
 </Card>
 <Card title="Built on CIRCT" icon="rocket">
 Leverages the power of LLVM and MLIR via the CIRCT project. Compiles to clean SystemVerilog for synthesis.
