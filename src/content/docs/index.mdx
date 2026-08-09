@@ -16,7 +16,7 @@ code: |
         reg counter: u27 = 0
 
         // Sequential update
-        counter <= counter + 1
+        counter <= (counter + 1) as u27
 
         // Combinational connection
         led := counter[24]
